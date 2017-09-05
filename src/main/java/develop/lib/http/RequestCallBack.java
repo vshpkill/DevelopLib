@@ -5,6 +5,6 @@ package develop.lib.http;
  */
 
 public interface RequestCallBack {
-    void onSuccess();
+    void onSuccess(String result);
     void onFail();
 }
