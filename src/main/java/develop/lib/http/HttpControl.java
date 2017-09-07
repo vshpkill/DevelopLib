@@ -39,15 +39,13 @@ public class HttpControl {
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
             connection.setRequestMethod(request.getMethod());
+            connection.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
             connection.setDoOutput(true);
             connection.setDoInput(true);
             if (TextUtils.equals("POST", request.getMethod())) {
                 connection.setUseCaches(false);
-                OutputStream outputStream = connection.getOutputStream();
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-                objectOutputStream.writeObject(request.getPrams());
-                objectOutputStream.flush();
-                objectOutputStream.close();
+                byte[] bypes = request.getPrams().toString().getBytes();
+                connection.getOutputStream().write(bypes);
             } else {
                 connection.setUseCaches(true);
             }

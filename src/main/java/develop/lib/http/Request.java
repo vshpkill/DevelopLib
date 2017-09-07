@@ -51,9 +51,9 @@ public class Request {
     public String getPrams(){
         String sPrams = "";
         for (int i = 0;i<pramsKey.size();i++){
-            sPrams += pramsKey.get(i)+":"+pramsValue.get(i);
+            sPrams += pramsKey.get(i)+"="+pramsValue.get(i);
             if (i < pramsKey.size()-1){
-                sPrams +=",";
+                sPrams +="&";
             }
         }
         return sPrams;
