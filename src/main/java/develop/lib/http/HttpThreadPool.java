@@ -8,7 +8,6 @@ import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by KKK on 2017/9/4.
@@ -48,8 +47,8 @@ public class HttpThreadPool {
     private void init() {
         pool = new ThreadPoolExecutor(
                 cpuThread,
-                2 * cpuThread,
-                10, TimeUnit.SECONDS,
+                4 * cpuThread,
+                8 * cpuThread, TimeUnit.SECONDS,
                 new ArrayBlockingQueue<Runnable>(5));
 //        ,
 //        new CustomThreadFactory(),

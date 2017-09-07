@@ -18,6 +18,23 @@ import java.util.concurrent.ExecutorService;
  */
 
 public class HttpControl {
+    private static HttpControl control;
+    private static final byte[] bytes = new byte[0];
+    //京东数据appkey：
+    //String url = "https://way.jd.com/he/freeweather?appkey=d614e4aa3df0ee4c3d67ecec1900cea0";
+    private HttpControl() {
+
+    }
+
+    public static HttpControl getIntence() {
+        synchronized (bytes) {
+            if (control == null) {
+                control = new HttpControl();
+            }
+            return control;
+        }
+    }
+
     public void beginRequest(final Request request, final RequestCallBack callBack) {
         if (request == null || TextUtils.isEmpty(request.getUrl())) {
             throw new RuntimeException("请补全请求信息");
@@ -26,13 +43,13 @@ public class HttpControl {
         service.execute(new Runnable() {
             @Override
             public void run() {
-                Log.e("返回信息","方法执行");
-                buildHttp(request,callBack);
+                Log.e("返回信息", "方法执行");
+                buildHttp(request, callBack);
             }
         });
     }
 
-    private void buildHttp(Request request,RequestCallBack callBack) {
+    private void buildHttp(Request request, RequestCallBack callBack) {
         try {
             URL httpUrl = new URL(request.getUrl());
             HttpURLConnection connection = (HttpURLConnection) httpUrl.openConnection();
@@ -60,7 +77,7 @@ public class HttpControl {
                 }
                 callBack.onSuccess(baos.toString("utf-8"));
             } else {
-                Log.e("返回信息","失败");
+                Log.e("返回信息", "失败");
                 callBack.onFail();
             }
 
@@ -69,9 +86,5 @@ public class HttpControl {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void setRequestMethod() {
-
     }
 }
