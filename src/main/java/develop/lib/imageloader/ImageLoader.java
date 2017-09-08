@@ -14,6 +14,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by KKK on 2017/9/7.
+ * 渣渣版图片加载框架
  */
 
 public class ImageLoader {

@@ -15,6 +15,7 @@ import java.util.concurrent.ExecutorService;
 
 /**
  * Created by KKK on 2017/9/4.
+ * 渣渣版网络请求框架
  */
 
 public class HttpControl {
