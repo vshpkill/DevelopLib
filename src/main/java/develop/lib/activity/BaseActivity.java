@@ -24,11 +24,17 @@ public abstract class BaseActivity extends Activity {
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setAnimation();
+            openImmerseStatasBarMode(this);
         }
         context = this;
         initViews();
         initVariables();
         loadData();
+    }
+
+    public static void openImmerseStatasBarMode(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        }
     }
 
     /**
@@ -38,20 +44,20 @@ public abstract class BaseActivity extends Activity {
     private void setAnimation() {
         switch (AppConfig.ACTIVITYANIMATION) {
             //分解
-                case 1:
-            getWindow().setEnterTransition(new Explode().setDuration(2000));
-            getWindow().setExitTransition(new Explode().setDuration(2000));
-            break;
+            case 1:
+                getWindow().setEnterTransition(new Explode().setDuration(2000));
+                getWindow().setExitTransition(new Explode().setDuration(2000));
+                break;
             //滑入
-                case 2:
-            getWindow().setEnterTransition(new Slide().setDuration(2000));
-            getWindow().setExitTransition(new Slide().setDuration(2000));
-            break;
+            case 2:
+                getWindow().setEnterTransition(new Slide().setDuration(2000));
+                getWindow().setExitTransition(new Slide().setDuration(2000));
+                break;
             //淡入淡出
-                case 3:
-            getWindow().setEnterTransition(new Fade().setDuration(2000));
-            getWindow().setExitTransition(new Fade().setDuration(2000));
-            break;
+            case 3:
+                getWindow().setEnterTransition(new Fade().setDuration(2000));
+                getWindow().setExitTransition(new Fade().setDuration(2000));
+                break;
         }
     }
 
@@ -63,6 +69,7 @@ public abstract class BaseActivity extends Activity {
 
     /**
      * 适配5.0以上加入转场动画效果
+     *
      * @param intent
      */
     public void startActivity(Intent intent) {
@@ -72,8 +79,10 @@ public abstract class BaseActivity extends Activity {
             startActivity(intent);
         }
     }
+
     /**
      * 适配5.0以上加入转场动画效果
+     *
      * @param aClass
      */
     public void startActivity(Class aClass) {
